@@ -1,0 +1,146 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  _id: String!
+  userId: String!
+  title: String!
+  body: String!
+}
+
+type Comment {
+  _id: String!
+  postId: String!
+  name: String!
+  email: String!
+  body: String!
+}
+
+type Album {
+  _id: String!
+  userId: String!
+  title: String!
+}
+
+type Photo {
+  albumId: String!
+  title: String!
+  url: String!
+  thumbnailUrl: String!
+}
+
+type Todo {
+  _id: String!
+  userId: String!
+  title: String!
+  completed: Boolean!
+}
+
+type Geo {
+  lat: String!
+  lng: String!
+}
+
+type Address {
+  street: String!
+  suite: String!
+  city: String!
+  zipcode: String!
+  geo: Geo!
+}
+
+type Company {
+  name: String!
+  catchPhrase: String!
+  bs: String!
+}
+
+type User {
+  _id: String!
+  name: String!
+  username: String!
+  email: String!
+  address: Address!
+  phone: String!
+  website: String!
+  company: Company!
+}
+
+type Query {
+  getPost(_id: String, userId: String, title: String, body: String): [Post!]!
+  getComments(_id: String, postId: String, name: String, email: String, body: String): [Comment!]!
+  getAlbums(_id: String, userId: String, title: String): [Album!]!
+  getPhoto(_id: String, albumId: String, title: String, url: String, thumbnailUrl: String): [Photo!]!
+  getTodos(_id: String, userId: String, completed: Boolean): [Todo!]!
+  getUsers(_id: String, name: String, username: String, email: String, phone: String, website: String): [User!]!
+}
+
+type Mutation {
+  createPost(postInput: PostInput!): Post!
+  createComment(commentInput: CommentInput!): Comment!
+  createAlbum(albumInput: AlbumInput!): Album!
+  createPhoto(photoInput: PhotoInput!): Photo!
+  createTodo(todoInput: TodoInput!): Todo!
+  createUser(userInput: UserInput!): User!
+}
+
+input PostInput {
+  userId: String!
+  title: String!
+  body: String!
+}
+
+input CommentInput {
+  postId: String!
+  name: String!
+  email: String!
+  body: String!
+}
+
+input AlbumInput {
+  userId: String!
+  title: String!
+}
+
+input PhotoInput {
+  albumId: String!
+  title: String!
+  url: String!
+  thumbnailUrl: String!
+}
+
+input TodoInput {
+  userId: String!
+  title: String!
+  completed: Boolean!
+}
+
+input UserInput {
+  name: String!
+  username: String!
+  email: String!
+  address: AddressInput!
+  phone: String!
+  website: String!
+  company: CompanyInput!
+}
+
+input AddressInput {
+  street: String!
+  suite: String!
+  city: String!
+  zipcode: String!
+  geo: GeoInput!
+}
+
+input GeoInput {
+  lat: String!
+  lng: String!
+}
+
+input CompanyInput {
+  name: String!
+  catchPhrase: String!
+  bs: String!
+}
