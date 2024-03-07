@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { TODO_MODEL, Todo } from './todos.model';
 import mongoose, { Model } from 'mongoose';
@@ -7,21 +7,27 @@ import { TodoFilter, TodoInput } from './dto/todo.input';
 
 @Injectable()
 export class TodosService {
-    constructor(@InjectModel(TODO_MODEL)private todoModel:Model<Todo>){}
+    constructor(@InjectModel(TODO_MODEL) private todoModel: Model<Todo>) { }
 
-    async getTodos(todoFilter:TodoFilter):Promise<Todo[]>{
-        if(todoFilter._id){
-            const id = new mongoose.Types.ObjectId(todoFilter._id);
-            return await this.todoModel.find({_id:id});
-        }else{
-            return await this.todoModel.find(todoFilter);
-
+    async getTodo(_id: string): Promise<Todo> {
+        const isValidId = mongoose.isValidObjectId(_id);
+        if (!isValidId) {
+            throw new BadRequestException('please enter correct id');
         }
-        
+        const id = new mongoose.Types.ObjectId(_id);
+        const result = await this.todoModel.findById(id);
+
+        if (!result) throw new NotFoundException('Todo not found with given Id');
+
+        return result;
     }
 
-    async createTodo(@Args('todoInput')todoInput:TodoInput):Promise<Todo>{
-        const res = await this.todoModel.create(todoInput);
-        return await res.save();
+    async getTodos(todoFilter: TodoFilter): Promise<Todo[]> {
+        return await this.todoModel.find(todoFilter);
+
+    }
+
+    async createTodo(@Args('todoInput') todoInput: TodoInput): Promise<Todo> {
+        return await this.todoModel.create(todoInput);
     }
 }

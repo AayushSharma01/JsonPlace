@@ -7,6 +7,11 @@ import { CommentFilter, CommentInput } from './dto/comments.input';
 export class CommentsResolver {
     constructor(private commentService:CommentsService){}
 
+    @Query(returns =>Comment)
+    async getComment(@Args('_id')_id:string):Promise<Comment>{
+        return this.commentService.getComment(_id);
+    }
+
     @Query(returns =>[Comment])
     async getComments(@Args() commentFilter:CommentFilter):Promise<Comment[]>{
         return this.commentService.getComments(commentFilter);

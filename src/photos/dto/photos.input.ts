@@ -18,9 +18,6 @@ export class PhotoInput{
 @ArgsType()
 export class PhotoFillter{
     @Field(type => String , {nullable:true})
-    _id:string
-    
-    @Field(type => String , {nullable:true})
     albumId:string
 
     @Field(type => String , {nullable:true})

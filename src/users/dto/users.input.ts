@@ -64,9 +64,6 @@ export class UserInput{
 @ArgsType()
 export class UserFilter{
     @Field(type => String , {nullable:true})
-    _id:string
-    
-    @Field(type => String , {nullable:true})
     name:String
    
     @Field(type => String , {nullable:true})

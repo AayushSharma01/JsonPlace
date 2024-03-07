@@ -7,6 +7,10 @@ import { AlbumFilter, AlbumInput } from './dto/albums.input';
 export class AlbumsResolver {
     constructor(private albumServices:AlbumsService){}
 
+    @Query(returns=> Album)
+    async getAlbum(@Args('_id')_id:string):Promise<Album>{
+        return await this.albumServices.getAlbum(_id);
+    }
     @Query(returns=> [Album])
     async getAlbums(@Args()albumFilter:AlbumFilter):Promise<Album[]>{
         return await this.albumServices.getAlbums(albumFilter);

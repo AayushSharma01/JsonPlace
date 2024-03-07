@@ -14,8 +14,6 @@ export class PostInput{
 
 @ArgsType()
 export class PostFilter{
-   @Field(type=>String , {nullable:true})
-   _id:string
 
    @Field(type=>String , {nullable:true})
    userId:string

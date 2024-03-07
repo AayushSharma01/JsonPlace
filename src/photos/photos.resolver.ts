@@ -7,8 +7,12 @@ import { PhotoFillter, PhotoInput } from './dto/photos.input';
 export class PhotosResolver {
     constructor(private photoSevice:PhotosService){}
 
+    @Query(returns => Photo)
+    async getPhoto(@Args('_id')_id:string):Promise<Photo>{
+        return this.photoSevice.getPhoto(_id);
+    }
     @Query(returns => [Photo])
-    async getPhoto(@Args()photoFilter:PhotoFillter):Promise<Photo[]>{
+    async getPhotos(@Args()photoFilter:PhotoFillter):Promise<Photo[]>{
         return this.photoSevice.getPhotos(photoFilter);
     }
 

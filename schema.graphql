@@ -24,6 +24,7 @@ type Album {
 }
 
 type Photo {
+  _id: String!
   albumId: String!
   title: String!
   url: String!
@@ -68,12 +69,18 @@ type User {
 }
 
 type Query {
-  getPost(_id: String, userId: String, title: String, body: String): [Post!]!
-  getComments(_id: String, postId: String, name: String, email: String, body: String): [Comment!]!
-  getAlbums(_id: String, userId: String, title: String): [Album!]!
-  getPhoto(_id: String, albumId: String, title: String, url: String, thumbnailUrl: String): [Photo!]!
-  getTodos(_id: String, userId: String, completed: Boolean): [Todo!]!
-  getUsers(_id: String, name: String, username: String, email: String, phone: String, website: String): [User!]!
+  getPost(_id: String!): Post!
+  getPosts(userId: String, title: String, body: String): [Post!]!
+  getComment(_id: String!): Comment!
+  getComments(postId: String, name: String, email: String, body: String): [Comment!]!
+  getAlbum(_id: String!): Album!
+  getAlbums(userId: String, title: String): [Album!]!
+  getPhoto(_id: String!): Photo!
+  getPhotos(albumId: String, title: String, url: String, thumbnailUrl: String): [Photo!]!
+  getTodo(_id: String!): Todo!
+  getTodos(userId: String, completed: Boolean): [Todo!]!
+  getUser(_id: String!): User!
+  getUsers(name: String, username: String, email: String, phone: String, website: String): [User!]!
 }
 
 type Mutation {

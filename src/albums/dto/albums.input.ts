@@ -12,9 +12,6 @@ export class AlbumInput{
 @ArgsType()
 export class AlbumFilter{
     @Field(type => String , {nullable:true})
-    _id:string
-
-    @Field(type => String , {nullable:true})
     userId:string
 
     @Field(type => String , {nullable:true})

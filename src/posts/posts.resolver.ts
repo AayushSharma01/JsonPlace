@@ -7,8 +7,13 @@ import { PostFilter, PostInput } from './dto/posts.input';
 @Resolver()
 export class PostsResolver {
     constructor(private postService:PostsService){}
+
+    @Query(returns => Post)
+    async getPost(@Args('_id')_id:string):Promise<Post>{
+        return await this.postService.getPost(_id);
+    }
     @Query(returns => [Post])
-    async getPost(@Args()postFilter:PostFilter):Promise<Post[]>{
+    async getPosts(@Args()postFilter:PostFilter):Promise<Post[]>{
         return this.postService.getPosts(postFilter);
     }
 

@@ -17,9 +17,7 @@ export class CommentInput{
 
 @ArgsType()
 export class CommentFilter{
-    @Field(type=> String , {nullable:true})
-    _id:string
-
+    
     @Field(type => String , {nullable:true})
     postId:string
 

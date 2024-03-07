@@ -4,6 +4,10 @@ import { MongooseModule, Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 @ObjectType()
 @Schema()
 export class Photo{
+
+    @Field(type => String)
+    _id:string
+    
     @Field(type => String)
     @Prop()
     albumId:string

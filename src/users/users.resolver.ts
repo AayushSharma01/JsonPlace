@@ -8,6 +8,11 @@ import { UserFilter, UserInput } from './dto/users.input';
 export class UsersResolver {
     constructor(private usersService:UsersService){}
 
+    @Query(returns => User)
+    async getUser(@Args('_id')_id:string):Promise<User>{
+        return await this.usersService.getUser(_id);
+    }
+
     @Query(returns => [User])
     async getUsers(@Args()userfilter:UserFilter):Promise<User[]>{
         return await this.usersService.getUsers(userfilter);
