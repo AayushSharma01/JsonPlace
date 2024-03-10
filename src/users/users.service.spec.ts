@@ -95,7 +95,6 @@ describe('UsersService', () => {
         email: "Telly.Hoeger@billy.biz",
         phone: "210.067.6132",
         website: "elvis.io",
-
       }
       jest.spyOn(model, 'find').mockResolvedValue(users);
       const result = await usersService.getUsers(userInput);
