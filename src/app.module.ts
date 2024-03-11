@@ -12,6 +12,8 @@ import { PhotosModule } from './photos/photos.module';
 import { TodosModule } from './todos/todos.module';
 import { UsersModule } from './users/users.module';
 import {join} from 'path';
+import { AuthModule } from './auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -24,12 +26,18 @@ import {join} from 'path';
       isGlobal:true
     }),
     MongooseModule.forRoot(process.env.DB),
+    JwtModule.register({
+      global:true,
+      secret:process.env.JWT_SCRECT,
+      signOptions: { expiresIn: '2d'}
+    }),
     PostsModule,
     CommentsModule,
     AlbumsModule,
     PhotosModule,
     TodosModule,
     UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

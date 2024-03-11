@@ -1,7 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { UsersService } from "./users.service";
 import { getModelToken } from "@nestjs/mongoose";
-import { User, User_Model } from "./usersmodel";
+import { User, User_Model } from "./users.model";
 import mongoose, { Model } from "mongoose";
 import { BadRequestException, NotFoundException } from "@nestjs/common";
 

@@ -68,6 +68,22 @@ type User {
   company: Company!
 }
 
+type AuthUser {
+  name: String!
+  email: String!
+  password: String!
+  role: Role!
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type SignInResponse {
+  jwtToken: String!
+}
+
 type Query {
   getPost(_id: String!): Post!
   getPosts(userId: String, title: String, body: String): [Post!]!
@@ -90,6 +106,8 @@ type Mutation {
   createPhoto(photoInput: PhotoInput!): Photo!
   createTodo(todoInput: TodoInput!): Todo!
   createUser(userInput: UserInput!): User!
+  signUp(signUpInput: SignUpInput!): AuthUser!
+  signIn(signInInput: SignInInput!): SignInResponse!
 }
 
 input PostInput {
@@ -150,4 +168,16 @@ input CompanyInput {
   name: String!
   catchPhrase: String!
   bs: String!
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+  role: Role!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
 }

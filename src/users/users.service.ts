@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, User_Model } from './usersmodel';
+import { User, User_Model } from './users.model';
 import mongoose, { Model } from 'mongoose';
 import { UserFilter, UserInput } from './dto/users.input';
 
