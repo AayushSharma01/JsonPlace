@@ -28,8 +28,9 @@ export class AuthService {
         if (!checkPassword) throw new BadRequestException('entered correct password');
        
         const payload = { sub: savedUser._id , role:savedUser.role};
+        const token = await this.jwtService.signAsync(payload);
         return {
-            jwtToken:await this.jwtService.signAsync(payload),
+            jwtToken:token
         }
 
 
